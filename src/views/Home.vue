@@ -9,7 +9,7 @@
     </div>
     <Layout class="row-col">
       <Sider breakpoint="md" collapsible :collapsed-width="78" v-model="isCollapsed">
-        <Menu active-name="list" theme="dark" width="auto" @on-select="selectMenuItem">
+        <Menu active-name="summary" theme="dark" width="auto" @on-select="selectMenuItem">
           <MenuItem name="summary" class="menu-item-list">首页</MenuItem>
           <MenuItem name="storage" class="menu-item-mine">包裹入库</MenuItem>
           <MenuItem name="reserve" class="menu-item-mine">预约取件</MenuItem>
