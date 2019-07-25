@@ -31,6 +31,24 @@ export default {
         {
           title: '状态',
           key: 'status',
+          filters: [
+            {
+              label: '未预约',
+              value: 1
+            },
+            {
+              label: '已预约',
+              value: 2
+            },
+            {
+              label: '已取件',
+              value: 3
+            }
+          ],
+          filterMultiple: false,
+          filterMethod (value, row) {
+            return row.status === value
+          },
           render: (h, params) => {
             return h('div', [
               h('Icon', {
@@ -38,7 +56,11 @@ export default {
                   type: 'person'
                 }
               }),
-              h('span', this.getStatus(params.row.status))
+              h('span', {
+                style: {
+                  color: params.row.status === 3 ? '#19be6b' : 'black'
+                }
+              }, this.getStatus(params.row.status))
             ])
           }
         },
@@ -69,11 +91,12 @@ export default {
                   size: 'small'
                 },
                 style: {
-                  marginRight: '5px'
+                  marginRight: '5px',
+                  display: params.row.status !== 3 ? 'inline-block' : 'none'
                 },
                 on: {
                   click: () => {
-                    this.show(params.index)
+                    this.confirmReceipt(params.index)
                   }
                 }
               }, '确定收货')
@@ -116,9 +139,21 @@ export default {
       } else if (status === 3) {
         return '已取件'
       }
+    },
+    confirmReceipt (index) {
+      this.$Modal.confirm({
+        title: '确认收货?',
+        onOk: () => {
+          let order = this.$store.state.items[index]
+          order.status = 3
+          this.$store.dispatch('confirmReceipt', order)
+        },
+        onCancel: () => {
+        }
+      })
     }
   },
-  mounted() {
+  mounted () {
     this.$store.dispatch('getOrders')
   }
 }

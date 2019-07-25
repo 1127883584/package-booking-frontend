@@ -22,6 +22,13 @@ const actions = {
       console.log(response)
     })
   },
+  async confirmReceipt ({ commit }, payload) {
+    await axios.put('http://localhost:8088/orders?orderNumber=' + payload.orderNumber, payload).then((response) => {
+      commit('storage', [response.data])
+    }).catch((response) => {
+      console.log(response)
+    })
+  },
   async addItem ({ commit }, payload) {
     await axios.post('http://localhost:3001/todos', payload).then((response) => {
       commit('addItem', [response.data])

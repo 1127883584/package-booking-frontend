@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/Home'
-import Storage from './components/content/Storage'
-import Reserve from './components/content/Reserve'
-import Summary from './components/content/Summary'
+import Home from './views/Home'
+import Storage from './views/Storage'
+import Reserve from './views/Reserve'
+import Summary from './views/Summary'
 
 Vue.use(Router)
 
@@ -21,14 +21,6 @@ export default new Router({
         { path: '/reserve', name: 'reserve', component: Reserve }
       ],
       redirect: '/summary'
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
   ]
 })
