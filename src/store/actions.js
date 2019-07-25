@@ -10,6 +10,13 @@ const actions = {
       console.log(response)
     })
   },
+  async reserve ({ commit }, payload) {
+    await axios.post('http://localhost:8088/orders', payload).then((response) => {
+      commit('reserve', [response.data])
+    }).catch((response) => {
+      console.log(response)
+    })
+  },
   async addItem ({ commit }, payload) {
     await axios.post('http://localhost:3001/todos', payload).then((response) => {
       commit('addItem', [response.data])

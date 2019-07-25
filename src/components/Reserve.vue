@@ -7,11 +7,10 @@
           <Input v-model="reserve.orderNumber"/>
         </FormItem>
         <FormItem label="预约时间：">
-          <DatePicker type="datetime" placeholder="Select date and time" style="width: 400px"></DatePicker>
-<!--          <Input v-model="reserve.pickupTime"/>-->
+          <DatePicker :value="reserve.pickupTime" type="datetime" placeholder="Select date and time" style="width: 400px" ></DatePicker>
         </FormItem>
         <FormItem>
-          <Button type="primary">确定</Button>
+          <Button type="primary" @click="submit">确定</Button>
           <Button style="margin-left: 8px">重置</Button>
         </FormItem>
       </Form>
@@ -24,12 +23,21 @@ export default {
     return {
       reserve: {
         orderNumber: '',
-        pickupTime: ''
+        pickupTime: new Date()
       }
     }
   },
   methods: {
-
+    submit () {
+      let newReserve = {
+        orderNumber: '',
+        pickupTime: 0
+      }
+      newReserve.orderNumber = this.reserve.orderNumber
+      newReserve.pickupTime = this.reserve.pickupTime.getTime()
+      console.log(JSON.stringify(newReserve))
+      this.$store.dispatch('reserve', newReserve)
+    }
   }
 }
 </script>
