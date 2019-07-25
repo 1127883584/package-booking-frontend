@@ -7,7 +7,7 @@
           <Input v-model="reserve.orderNumber"/>
         </FormItem>
         <FormItem label="预约时间：">
-          <DatePicker :value="reserve.pickupTime" type="datetime" placeholder="Select date and time" style="width: 400px" ></DatePicker>
+          <DatePicker v-model="reserve.pickupTime" type="datetime" placeholder="Select date and time" style="width: 400px" ></DatePicker>
         </FormItem>
         <FormItem>
           <Button type="primary" @click="submit">确定</Button>
@@ -38,7 +38,13 @@ export default {
       newReserve.pickupTime = this.reserve.pickupTime.getTime()
       newReserve.status = 2
       console.log(JSON.stringify(newReserve))
-      this.$store.dispatch('reserve', newReserve)
+      this.$store.dispatch('reserve', newReserve).then(() => {
+        this.$Modal.success({
+          title: '预约成功！'
+        })
+      }).catch((e) => {
+        console.log(e)
+      })
     }
   }
 }

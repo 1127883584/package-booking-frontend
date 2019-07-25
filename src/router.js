@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './components/Home'
-import Storage from './components/Storage'
-import Reserve from './components/Reserve'
-import Summary from './components/Summary'
+import Storage from './components/content/Storage'
+import Reserve from './components/content/Reserve'
+import Summary from './components/content/Summary'
 
 Vue.use(Router)
 
