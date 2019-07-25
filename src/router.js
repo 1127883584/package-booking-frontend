@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Home from './components/Home'
+import Storage from './components/Storage'
+import Reserve from './components/Reserve'
+import Summary from './components/Summary'
 
 Vue.use(Router)
 
@@ -11,7 +14,13 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      children: [
+        { path: '/summary', name: 'summary', component: Summary },
+        { path: '/storage', name: 'storage', component: Storage },
+        { path: '/reserve', name: 'reserve', component: Reserve }
+      ],
+      redirect: '/summary'
     },
     {
       path: '/about',

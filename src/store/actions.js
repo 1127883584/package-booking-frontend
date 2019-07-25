@@ -1,9 +1,11 @@
 import axios from 'axios'
 
 const actions = {
-  async initItem ({ commit }) {
-    await axios.get('http://localhost:3001/todos').then((response) => {
-      commit('addItem', response.data)
+  async getOrders ({ commit }) {
+    console.log('asd')
+    await axios.get('http://localhost:8088/orders').then((response) => {
+      console.log(JSON.stringify(response.data))
+      commit('getOrders', response.data)
     }).catch((response) => {
       console.log(response)
     })
