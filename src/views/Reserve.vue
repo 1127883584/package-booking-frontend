@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="width: 500px; margin: 50px auto;text-align: center;">
-      <h2>预约取件</h2>
+      <h1>预约取件</h1>
       <Form :model="reserve" label-position="left" :label-width="100" style="margin-top: 20px">
         <FormItem label="运单号：">
           <Input v-model="reserve.orderNumber"/>
@@ -9,10 +9,7 @@
         <FormItem label="预约时间：">
           <DatePicker v-model="reserve.pickupTime" type="datetime" placeholder="Select date and time" style="width: 400px" ></DatePicker>
         </FormItem>
-        <FormItem>
-          <Button type="primary" @click="submit">确定</Button>
-          <Button style="margin-left: 8px">重置</Button>
-        </FormItem>
+        <Button type="primary" @click="submit">确定预约</Button>
       </Form>
     </div>
   </div>

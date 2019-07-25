@@ -15,9 +15,7 @@
         <FormItem label="重量：">
           <Input v-model="storage.weight"/>
         </FormItem>
-        <FormItem>
-          <Button type="primary" @click="submit">确定入库</Button>
-        </FormItem>
+        <Button type="primary" @click="submit">确定入库</Button>
       </Form>
     </div>
   </div>
