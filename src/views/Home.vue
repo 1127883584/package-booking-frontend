@@ -1,7 +1,7 @@
 <template>
   <Row class="row-home">
     <div class="row-home-header">
-      <div class="div-back"><Button type="primary" @click="back">Back</Button></div>
+      <div class="div-back"><h1>菜鸟驿站</h1></div>
       <div class="div-username">
         <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large" class="row-home-header-avatar"/>
         <span class="row-home-header-span">superAdmin</span>
