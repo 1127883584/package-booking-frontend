@@ -30,11 +30,31 @@ export default {
         },
         {
           title: '状态',
-          key: 'status'
+          key: 'status',
+          render: (h, params) => {
+            return h('div', [
+              h('Icon', {
+                props: {
+                  type: 'person'
+                }
+              }),
+              h('span', this.getStatus(params.row.status))
+            ])
+          }
         },
         {
           title: '预约时间',
-          key: 'pickupTime'
+          key: 'pickupTime',
+          render: (h, params) => {
+            return h('div', [
+              h('Icon', {
+                props: {
+                  type: 'person'
+                }
+              }),
+              h('span', this.getLocalTime(params.row.pickupTime))
+            ])
+          }
         },
         {
           title: 'Action',
@@ -74,9 +94,32 @@ export default {
     remove (index) {
       this.data6.splice(index, 1)
     },
-    getLocalTime (nS) {
-      return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, '-').replace(/日/g, ' ')
+    getLocalTime (timestamp) {
+      if (!timestamp) {
+        return ''
+      } else {
+        let d = new Date(timestamp)
+        let date = (d.getFullYear()) + '-' +
+          (d.getMonth() + 1) + '-' +
+          (d.getDate()) + ' ' +
+          (d.getHours()) + ':' +
+          (d.getMinutes()) + ':' +
+          (d.getSeconds())
+        return date
+      }
+    },
+    getStatus (status) {
+      if (status === 1) {
+        return '未预约'
+      } else if (status === 2) {
+        return '已预约'
+      } else if (status === 3) {
+        return '已取件'
+      }
     }
+  },
+  mounted() {
+    this.$store.dispatch('getOrders')
   }
 }
 </script>

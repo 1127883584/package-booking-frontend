@@ -29,12 +29,14 @@ export default {
   },
   methods: {
     submit () {
-      let newReserve = {
-        orderNumber: '',
-        pickupTime: 0
+      let newReserve = {}
+      for (let i = 0; i < this.$store.state.items.length; i++) {
+        if (this.reserve.orderNumber === this.$store.state.items[i].orderNumber) {
+          newReserve = this.$store.state.items[i]
+        }
       }
-      newReserve.orderNumber = this.reserve.orderNumber
       newReserve.pickupTime = this.reserve.pickupTime.getTime()
+      newReserve.status = 2
       console.log(JSON.stringify(newReserve))
       this.$store.dispatch('reserve', newReserve)
     }

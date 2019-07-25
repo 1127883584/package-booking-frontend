@@ -16,7 +16,7 @@
           <Input v-model="storage.weight"/>
         </FormItem>
         <FormItem>
-          <Button type="primary">确定入库</Button>
+          <Button type="primary" @click="submit">确定入库</Button>
           <Button style="margin-left: 8px">重置</Button>
         </FormItem>
       </Form>
@@ -36,7 +36,15 @@ export default {
     }
   },
   methods: {
-
+    submit () {
+      this.$store.dispatch('storage', this.storage).then(() => {
+        this.$Modal.success({
+          title: '入库成功！'
+        })
+      }).catch((e) => {
+        console.log(e)
+      })
+    }
   }
 }
 </script>
